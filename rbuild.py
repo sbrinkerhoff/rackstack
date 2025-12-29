@@ -19,6 +19,15 @@ if os.name == "posix":
     if 'darwin' in sys.platform:
         print("Operating System: macOS")
         PATH_TO_OPENSCAD = '/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD'
+
+        ALTERNATE_PATHS = [
+            '/Applications/OpenSCAD-2021.01.app/Contents/MacOS/OpenSCAD' # `brew install openscad`
+        ]
+        
+        for path in ALTERNATE_PATHS:
+            if binary_exists(path):
+                PATH_TO_OPENSCAD = path
+                break
     else:  # Assume Linux if not macOS
         print("Operating System: Linux")
         PATH_TO_OPENSCAD = '/usr/bin/openscad'
